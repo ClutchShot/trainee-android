@@ -29,6 +29,7 @@ class UserRecyclerAdapter(private val context: Context, private var  listener: o
         var userName : TextView = itemView.findViewById(R.id.list_user_name)
         var userTitle : TextView = itemView.findViewById(R.id.list_user_title)
         var userBirth : TextView = itemView.findViewById(R.id.list_user_birth)
+        var userNickname : TextView = itemView.findViewById(R.id.list_user_nickname)
 
 
         override fun onClick(v: View?) {
@@ -43,8 +44,14 @@ class UserRecyclerAdapter(private val context: Context, private var  listener: o
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.userName.text = users[position].firstName
+
+        holder.userName.text = users[position].firstName + " "  + users[position].lastName
         holder.userTitle.text = users[position].position
+        // нужно сделать создание никнейма боллее организованно
+        // пока только так, стыдно:(
+        val nickname = (users[position].firstName?.get(0) ?: "").toString()  +
+                (users[position].lastName?.get(0) ?: "").toString()
+        holder.userNickname.text = nickname.lowercase()
         Glide.with(context)
             .load(users[position].avatarUrl)
             .into(holder.userImage)

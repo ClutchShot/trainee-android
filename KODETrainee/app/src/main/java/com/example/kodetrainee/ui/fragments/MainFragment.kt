@@ -1,9 +1,8 @@
 package com.example.kodetrainee.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import android.widget.RadioGroup
 import androidx.appcompat.widget.SearchView
@@ -16,7 +15,13 @@ import com.example.kodetrainee.repository.SharedViewModel
 import com.example.kodetrainee.ui.adapters.SectionsPagerAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
+import android.net.ConnectivityManager
+import android.provider.Settings
 
+/**
+ *  Главный фрагмен. В нем нахрдятся viewPager для
+ *  фрагментов по департаментам
+ */
 
 class MainFragment : Fragment() {
 
@@ -29,7 +34,17 @@ class MainFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        sharedViewModel.getAllUsers()
+
+
+        if (isAirplaneModeOn(requireContext()) || !isNetworkAvailable(requireContext())){
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.placeholder_main, ErrorFragment(), "ErrorFragment")
+                ?.addToBackStack(null)
+                ?.commit()
+        }else{
+            // отправляем запрос
+            sharedViewModel.getAllUsers()
+        }
     }
 
     override fun onCreateView(
@@ -61,7 +76,7 @@ class MainFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                sharedViewModel.filterByName(newText)
+                sharedViewModel.filterByNameAndLastName(newText)
                 return true
             }
         })
@@ -119,5 +134,20 @@ class MainFragment : Fragment() {
                     ?.commit()
             }
         })
+    }
+
+    fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return connectivityManager.activeNetworkInfo != null && connectivityManager.activeNetworkInfo!!
+            .isConnected
+    }
+
+    fun isAirplaneModeOn(context: Context): Boolean {
+        return Settings.System.getInt(
+            context.contentResolver,
+            Settings.System.AIRPLANE_MODE_ON,
+            0
+        ) != 0
     }
 }

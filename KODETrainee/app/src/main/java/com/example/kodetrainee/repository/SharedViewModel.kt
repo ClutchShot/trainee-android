@@ -27,12 +27,15 @@ class SharedViewModel : ViewModel() {
     }
 
 
-    fun filterByName(name: String?) {
+    fun filterByNameAndLastName(name: String?) {
+
+
         val temp = response.value?.body()?.items
         if (temp != null) {
             if (name != null) {
                 allUsers.postValue(temp.filter {
-                    it.firstName?.lowercase()?.contains(name.lowercase())!!
+                    it.firstName?.lowercase()?.contains(name.lowercase())!! ||
+                            it.lastName?.lowercase()?.contains(name.lowercase())!!
                 })
             } else {
                 allUsers.postValue(temp)
@@ -48,6 +51,8 @@ class SharedViewModel : ViewModel() {
         })
     }
 
+
+    // Сортировка по дате реализована не правильно
     fun sortByBirthdate(){
         val temp = allUsers.value
         allUsers.postValue(temp?.sortedByDescending { it.birthday })

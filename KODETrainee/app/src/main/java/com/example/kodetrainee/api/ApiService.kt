@@ -8,7 +8,7 @@ import retrofit2.http.Headers
 
 interface ApiService {
 
-    @Headers("Content-Type: application/json", "Prefer: code=200, example=success")
+    @Headers("Content-Type: application/json", "Prefer: code=200, dynamic=true")
     @GET("users")
     suspend fun getAllUsers(): Response<Item?>
 }

@@ -7,7 +7,7 @@
     tools:context=".ui.fragments.UserFragment">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/page_user_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,10 +28,13 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:cardCornerRadius="50dp">
+            app:cardCornerRadius="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="100dp">
 
             <ImageView
                 android:id="@+id/card_user_img"
@@ -42,25 +45,41 @@
 
 
         <TextView
+            android:layout_below="@id/card_user"
             android:id="@+id/page_user_name"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            tools:text="@string/test_text"
             android:paddingTop="15dp"
-            android:paddingBottom="4dp"/>
+            android:paddingBottom="4dp"
+            android:layout_centerHorizontal="true"
+            tools:text="@string/test_text" />
 
         <TextView
+            android:layout_below="@id/page_user_name"
             android:id="@+id/page_user_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:paddingBottom="15dp"
+            android:layout_centerHorizontal="true"
             tools:text="@string/test_text"
-            android:paddingBottom="15dp"/>
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/page_user_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/page_user_name"
+            android:layout_marginLeft="6dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toRightOf="@id/page_user_name"
+            android:textSize="12sp"
+            tools:text="@string/test_text" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <RelativeLayout
@@ -69,7 +88,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/page_user_header"
         android:orientation="horizontal"
-        android:paddingStart="8dp">
+        android:paddingStart="8dp"
+        android:layout_marginTop="6dp">
 
         <ImageView
             android:id="@+id/icon_brth"
@@ -84,10 +104,10 @@
             style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="0dp"
             android:layout_toRightOf="@id/icon_brth"
-            android:layout_centerVertical="true"
             android:padding="10dp"
             tools:text="@string/test_text" />
 
@@ -96,8 +116,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="16dp"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
             tools:text="@string/test_text" />
     </RelativeLayout>
 
@@ -106,7 +126,8 @@
         android:layout_below="@id/page_layout_user_birthdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="8dp">
+        android:paddingStart="8dp"
+        android:layout_marginTop="6dp">
 
         <ImageView
             android:src="@drawable/ic_phone"

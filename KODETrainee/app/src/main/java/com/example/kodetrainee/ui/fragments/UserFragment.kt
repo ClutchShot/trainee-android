@@ -9,8 +9,7 @@ import com.example.kodetrainee.R
 import com.example.kodetrainee.databinding.FragmentUserBinding
 import com.example.kodetrainee.entity.User
 import com.example.kodetrainee.repository.SharedViewModel
-
-
+import android.Manifest.permission.CALL_PHONE
 
 
 import android.os.Build
@@ -20,11 +19,17 @@ import androidx.core.content.ContextCompat
 import java.text.SimpleDateFormat
 
 import java.util.*
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import androidx.annotation.RequiresApi
+import java.time.LocalDate
+import java.time.Period
+import java.time.ZoneId
 
-
-
-
-
+/**
+ * Фрагмент детальной информации сотрудника
+ */
 
 class UserFragment : Fragment() {
 
@@ -49,6 +54,21 @@ class UserFragment : Fragment() {
             setinfo(it)
         })
 
+
+
+        binding.pageUserPhone.setOnClickListener {
+
+            val phone_numb = sharedViewModel.userInfo.value?.phone
+            val callIntent = Intent(Intent.ACTION_CALL)
+            callIntent.data = Uri.parse("tel:$phone_numb")
+            if (ContextCompat.checkSelfPermission(requireContext(), CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                startActivity(callIntent);
+            } else {
+                requestPermissions(arrayOf(CALL_PHONE), 1);
+            }
+
+        }
+
         binding.backBtn.setOnClickListener {
             fragmentManager?.popBackStack()
         }
@@ -66,6 +86,7 @@ class UserFragment : Fragment() {
 
 
 
+
     fun setinfo(user: User) {
         Glide.with(requireContext())
             .load(user.avatarUrl)
@@ -77,16 +98,30 @@ class UserFragment : Fragment() {
         binding.pageUserBirthdate.text = date
         binding.pageUserName.text = user.firstName + " " + user.lastName
         binding.pageUserTitle.text = user.position
+
+        val nickname = (user.firstName?.get(0) ?: "").toString()  +
+                (user.lastName?.get(0) ?: "").toString()
+        binding.pageUserNickname.text = nickname.lowercase()
         binding.pageUserPhone.text = user.phone
+
         val c1 = Calendar.getInstance()
         c1.time = user.birthday!!
-
         val c2 = Calendar.getInstance()
-
         val years = c2.get(Calendar.YEAR) - c1.get(Calendar.YEAR)
         binding.pageUserYears.text = "$years years"
 
+
+
     }
+    //Более точный метод нахождения разницы даты
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun calculateUserAge(birthdate: Date) : String{
+        val now_date = LocalDate.now()
+        val local_birthdate = birthdate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        val period = Period.between(now_date,local_birthdate)
+        return period.years.toString()
+    }
+
 
     fun statusBarColor(){
         val window: Window = requireActivity().window

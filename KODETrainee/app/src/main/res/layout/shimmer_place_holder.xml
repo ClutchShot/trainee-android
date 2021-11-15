@@ -9,9 +9,9 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shimmer_img"
-        android:layout_width="84dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="12dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -24,7 +24,7 @@
         android:id="@+id/shimmer_name"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="170dp"
-        android:layout_height="18dp"
+        android:layout_height="14dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="8dp"
@@ -35,7 +35,7 @@
     <TextView
         android:id="@+id/shimmer_title"
         android:layout_width="100dp"
-        android:layout_height="18dp"
+        android:layout_height="14dp"
         android:layout_below="@id/shimmer_name"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"

@@ -29,7 +29,8 @@
     <RadioGroup
         android:id="@+id/filter_radio_group"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp">
 
         <RadioButton
             android:id="@+id/filter_alphabet_btn"
