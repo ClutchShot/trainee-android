@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="departments_list_ru">
+        <item>все</item>
+        <item>Android</item>
+        <item>iOS</item>
+        <item>Дизайн</item>
+        <item>Менеджмент</item>
+        <item>QA</item>
+        <item>Бэк-офис</item>
+        <item>Frontend</item>
+        <item>HR</item>
+        <item>PR</item>
+        <item>Backend</item>
+        <item>Техподдержка</item>
+        <item>Аналитика</item>
+    </string-array>
+
+    <string-array name="departments_list">
+        <item>all</item>
+        <item>android</item>
+        <item>ios</item>
+        <item>design</item>
+        <item>management</item>
+        <item>qa</item>
+        <item>back_office</item>
+        <item>frontend</item>
+        <item>hr</item>
+        <item>pr</item>
+        <item>backend</item>
+        <item>support</item>
+        <item>analytics</item>
+    </string-array>
+
+</resources>

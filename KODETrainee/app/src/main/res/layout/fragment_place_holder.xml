@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.PlaceholderFragment">
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shimmer_repeat_mode="restart"
+        app:shimmer_shape="linear">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_place_holder" />
+
+            <include layout="@layout/shimmer_place_holder" />
+
+            <include layout="@layout/shimmer_place_holder" />
+
+            <include layout="@layout/shimmer_place_holder" />
+
+            <include layout="@layout/shimmer_place_holder" />
+
+            <include layout="@layout/shimmer_place_holder" />
+
+            <include layout="@layout/shimmer_place_holder" />
+
+            <include layout="@layout/shimmer_place_holder" />
+
+            <include layout="@layout/shimmer_place_holder" />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/users_recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <include
+        android:id="@+id/not_found_user"
+        layout="@layout/not_found_user_view"
+        android:visibility="invisible"/>
+
+</FrameLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">KODE Trainee</string>
+    <string name="test_text">test</string>
+    <string name="not_found_user_text">Мы никого не нашли</string>
+    <string name="not_found_user_text2">Попробуёте скоректировать запрос</string>
+    <string name="search_hint">Введи имя, тег, почту…</string>
+    <string name="error_text1">Какой-то сверхразум все сломал</string>
+    <string name="error_text2">Постараемся быстро починить</string>
+    <string name="error_text3">Поробовать снова</string>
+    <string name="by_alphabet">По алфавиту</string>
+    <string name="by_birthdate">По дню рождения</string>
+    <string name="sort">Сортировка</string>
+</resources>
