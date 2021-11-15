@@ -52,7 +52,7 @@ class SharedViewModel : ViewModel() {
     }
 
 
-    // Сортировка по дате реализована не правильно
+    // Сортировка по дате реализована не точно
     fun sortByBirthdate(){
         val temp = allUsers.value
         allUsers.postValue(temp?.sortedByDescending { it.birthday })

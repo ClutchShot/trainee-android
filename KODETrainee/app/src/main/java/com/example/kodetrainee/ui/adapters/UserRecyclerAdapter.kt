@@ -47,8 +47,7 @@ class UserRecyclerAdapter(private val context: Context, private var  listener: o
 
         holder.userName.text = users[position].firstName + " "  + users[position].lastName
         holder.userTitle.text = users[position].position
-        // нужно сделать создание никнейма боллее организованно
-        // пока только так, стыдно:(
+        // возможно сделать более организованное создание никнейма
         val nickname = (users[position].firstName?.get(0) ?: "").toString()  +
                 (users[position].lastName?.get(0) ?: "").toString()
         holder.userNickname.text = nickname.lowercase()

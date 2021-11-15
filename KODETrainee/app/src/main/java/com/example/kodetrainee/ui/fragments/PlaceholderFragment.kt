@@ -56,8 +56,7 @@ class PlaceholderFragment : Fragment(), UserRecyclerAdapter.onItemListener {
         val departmentCode = arguments?.getInt(ARG_SECTION_NUMBER)
 
         /* Здесь релизованна логика фильтрации по департаменту и  замены view(если ничего не найдено),
-            думаю столо вынести фильтрацию и поиск в отделыный класс utilis.
-
+            думаю стоило вынести фильтрацию и поиск в отделыный класс utils.
          */
         sharedViewModel.allUsers.observe(viewLifecycleOwner, Observer { it ->
 
